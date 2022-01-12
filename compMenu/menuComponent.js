@@ -57,13 +57,7 @@ function getMyMenuOptions(json, shadow) {
 
 function setDetailMenu(position, size, shadow){
     const vStyle = document.createElement('style');
-    vStyle.textContent = `
-        .menu{
-            width: ${size};
-        }
-        .menu li ul{position:absolute; margin-top: -40px; margin-left:${size}; background-color: DarkGray; display:none;}
-        .menu li:hover ul, .menu li.over ul{display:block;}
-    `;
+    
     if (position === 'horizontal'){
         vStyle.textContent = `
             .menu li{
@@ -72,6 +66,34 @@ function setDetailMenu(position, size, shadow){
             }
             .menu li ul{position:absolute; top:40px; background-color: DarkGray; display:none;}
         `;
-    }
+    } else {
+        vStyle.textContent = `
+            .menu{
+                width: ${size};
+            }
+            .menu li ul{position:absolute; margin-top: -40px; margin-left:${size}; background-color: DarkGray; display:none;}
+            .menu li:hover ul, .menu li.over ul{display:block;}
+        `;
+    }   
+    vStyle.append(`
+        .menu ul{
+            margin: 16px 0;
+            padding: 0;
+            background-color: gray;
+            overflow: hidden;
+        }
+        .menu li a {
+            display: block;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+        }
+        .menu li a:hover{
+            background-color: black;
+        }
+        .menu li.active{
+            background-color: black;
+        }
+    `)
     shadow.appendChild(vStyle);
 }
